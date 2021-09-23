@@ -1,3 +1,19 @@
 import React from 'react';
+import { authService } from 'fbConfig';
+import { useHistory } from 'react-router';
 
-export default () => <span>Profile</span>;
+const Profile = () => {
+  const history = useHistory();
+  const onLogout = () => {
+    authService.signOut();
+    history.push("/");
+  };
+
+  return (
+    <>
+      <button onClick={onLogout}>LOGOUT</button>
+    </>
+  )
+};
+
+export default Profile;
