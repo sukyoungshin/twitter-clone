@@ -1,7 +1,9 @@
 # Twitter clone
 
-노마드코더 Nweeter 클론강의를 듣고 firebase를 학습한 코드를 업로드한 레포 <br/> <br/>
+노마드코더 Nwitter 강의를 듣고 firebase를 이용하여 트위터클론 진행 
+> 🔗출처 : [노마드코더](https://github.com/nomadcoders/nwitter)
 
+<br/>
 
 ## 삽질노트 및 해결방안
 
@@ -29,5 +31,5 @@ yarn installation
 
 ```
 
-## 🔗 Reference & 관련 레포
-- 레포 : [firebase 이론](https://github.com/sukyoungshin/TIL/tree/main/FIREBASE)
+## Reference
+- TIL : [firebase정리](https://github.com/sukyoungshin/TIL/tree/main/FIREBASE)
