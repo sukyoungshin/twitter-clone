@@ -31,9 +31,9 @@ function App() {
         ? <AppRouter isLoggedIn={isLoggedIn} userObj={userObj} /> 
         : 'Initializing...'
       }
-      <footer>
+      {/* <footer>
         &copy; {new Date().getFullYear()} twitter-clone
-      </footer>
+      </footer> */}
     </>
   );
 }

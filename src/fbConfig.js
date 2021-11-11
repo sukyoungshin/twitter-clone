@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import "firebase/storage";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -15,4 +16,5 @@ firebase.initializeApp(firebaseConfig);
 
 export const firebaseInstance = firebase; // firebase
 export const authService = firebase.auth(); // authentification
-export const dbService = firebase.firestore(); // daba-base
+export const dbService = firebase.firestore(); // dababase
+export const storageService = firebase.storage(); // image stroage
