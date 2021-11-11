@@ -1,6 +1,6 @@
 # Twitter clone
 
-노마드코더 Nweeter 클론강의를 듣고 firebase를 학습한 코드를 업로드한 레포
+노마드코더 Nweeter 클론강의를 듣고 firebase를 학습한 코드를 업로드한 레포 <br/> <br/>
 
 
 ## 삽질노트 및 해결방안
