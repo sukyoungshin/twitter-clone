@@ -1,6 +1,27 @@
 # Twitter clone
 
-React, Firebase
+노마드코더 Nweeter 클론강의를 듣고 firebase를 학습한 코드를 업로드한 레포
+
+
+## 삽질노트 및 해결방안
+
+### ❌ ISSUE
+
+강의에서 진행하는 firebase 버전과 최근 릴리즈 된 버전이 맞지 않아서 작동되지 않았음. <br/>
+
+### 🧐 시도해본 방법
+
+- 최신 버전을 사용하는 것이 옳다고 생각해서, 공식문서를 확인하여 최신 버전의 doc을 토대로 syntax를 맞춰가며 진행했으나, firebase의 기초적인 사용 방법을 숙지하지 못한 상태에서 억지로 시도하였더니 어렵게 느껴지고 진도가 나가질 않았음.
+- 일단 기초적인 사용 방법을 익히는게 중요하다 판단되어, 다운받은 라이브러리 버전을 다운그레이드하여 일단 프로젝트 한 사이클을 진행하였음.
+- 차후 뉴 버전으로 변경하여 업데이트 할 예정.
+
+### 💡 배운 점
+
+- firebase 공식문서에서 버전에 맞는 doc을 확인하는 것은 매우 중요하다.
+- 한 사이클을 일단락하여 전체적인 흐름을 보는 것이 중요하다.
+
+## Installation
+yarn installation
 
 ## Dependencies
 
@@ -8,7 +29,5 @@ React, Firebase
 
 ```
 
-## 패키지관리 (yarn)
-
-yarn install <br>
-yarn start <br>
+## 🔗 Reference & 관련 레포
+- 레포 : [firebase 이론](https://github.com/sukyoungshin/TIL/tree/main/FIREBASE)
