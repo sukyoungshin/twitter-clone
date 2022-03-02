@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
-import { authService } from './fbConfig';
+import App from './App';
+import { authService } from 'firebaseConfig';
 
 console.log('@@authService', authService );
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { authService } from 'fbConfig';
+import { authService } from 'firebaseConfig';
 import { useHistory } from 'react-router';
 
 const Profile = () => {

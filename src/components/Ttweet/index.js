@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { dbService } from 'fbConfig';
+import { dbService } from 'firebaseConfig';
 
 const Ttweet = ({ ttweetObj, isOwner }) => {
 
