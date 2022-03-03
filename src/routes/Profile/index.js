@@ -1,12 +1,13 @@
 import React from 'react';
-import { authService } from 'firebaseConfig';
 import { useHistory } from 'react-router';
+import { authService } from 'firebaseConfig';
+import { ROUTER } from 'constants/router';
 
 const Profile = () => {
   const history = useHistory();
   const onLogout = () => {
     authService.signOut();
-    history.push("/");
+    history.push(ROUTER.ROOT);
   };
 
   return (

@@ -1,19 +1,19 @@
 import { useState } from 'react';
 import { authService, firebaseInstance } from 'firebaseConfig';
 
-export const useAuthentication = () => {
+const EMAIL = 'email';
+const GOOGLE = 'google';
 
+export const useAuthentication = () => {
   const [ email, setEmail ] = useState(''); 
   const [ password, setPassword ] = useState(''); 
   const [ error, setError ] = useState(''); // error message 저장
   const [ newAccount, setNewAccount ] = useState(true); // 버튼 내부글씨 변경; true일땐 'create account', false일땐 'log in' 
 
   const onChange = (e) => {
-    const { 
-      target : { name, value } 
-    } = e;
+    const { target : { name, value } } = e;
 
-    if (name === 'email') {
+    if (name === EMAIL) {
       setEmail(value);
     } else {
       setPassword(value);
@@ -48,24 +48,23 @@ export const useAuthentication = () => {
     }
   };
 
+  return { email, password, error, newAccount, onToggleAccount, onSubmit, onChange };
+};
+
+export const useSocialLogin = () => {
   const onSocialLogin = (e) => {
-    const {
-      target : {name}
-    } = e;
+    const { target : {name} } = e;
 
     let provider = null;
-    if (name === 'google') {
-      //google login
-      provider = new firebaseInstance.auth.GoogleAuthProvider();
-      
+    if (name === GOOGLE) {
+      provider = new firebaseInstance.auth.GoogleAuthProvider(); // google login
     } else {
-      // github login
-      provider = new firebaseInstance.auth.GithubAuthProvider();
+      provider = new firebaseInstance.auth.GithubAuthProvider(); // github login
     }
 
     const data = authService.signInWithPopup(provider);
     console.log('@@ signin with popup : ' + data);
   };
 
-  return { email, password, error, newAccount, onToggleAccount, onSubmit, onChange, onSocialLogin };
+  return { onSocialLogin };
 };

@@ -4,14 +4,14 @@ import { Auth, Home, Profile } from 'routes';
 import { Navigation } from 'components';
 import { ROUTER } from 'constants/router';
 
-const AppRouter = ({ isLoggedIn, userObj }) => {
+const AppRouter = ({ isLoggedIn, userData }) => {
   return (
     <Router>
       { isLoggedIn && <Navigation /> }
       <Switch>
         { 
           isLoggedIn 
-          ? <PostPage userObj={userObj} />
+          ? <PostPage userData={userData} />
           : <LoginPage />
         }
       </Switch>
@@ -29,11 +29,11 @@ const LoginPage = () => {
   );
 };
 
-const PostPage = ({ userObj }) => {
+const PostPage = ({ userData }) => {
   return (
     <>
     <Route exact path={ROUTER.ROOT}>
-      <Home userObj={userObj} />
+      <Home userData={userData} />
     </Route>
     <Route exact path={ROUTER.PROFILE}>
       <Profile />

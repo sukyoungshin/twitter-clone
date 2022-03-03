@@ -2,60 +2,63 @@ import { useEffect, useState } from 'react';
 import { dbService, storageService } from 'firebaseConfig';
 import { v4 as uuidv4 } from 'uuid';
 
-export const useTtweetAndImagePost = ({userData}) => {
+export const useTtweetAndImagePost = ({ userData }) => {
 
   const [ ttweet, setTtweet ] = useState(''); // 새로 등록되는 트윗 -> firestore에 저장
   const [ ttweets, setTtweets ] = useState([]); // firestore에 저장된 데이터에 변화가 있을때 실시간으로 받아와서 저장
-  const [ attachment, setAttachment ] = useState(); // 사용자가 업로드한 image파일의 url
+  const [ imageUrl, setImageUrl ] = useState(); // image url (base64)
 
   useEffect(() => {
-    dbService.collection('ttweet').onSnapshot((snapshot) => {
-      const ttweetsArray = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data()
-      }));
+    dbService
+    .collection('ttweet')
+    .onSnapshot((snapshot) => {
+        const ttweetsArray = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        })
+      );
       setTtweets(ttweetsArray);
     });
   }, []);  
 
   const onSubmit = async(e) => {
     e.preventDefault();
+    let imageURL = "";
+    if (imageUrl !== "") {
+      const imageRef = storageService.ref().child(`${userData.uid}/${uuidv4()}`);
+      const response = await imageRef.putString(imageUrl, "data_url");
+      imageURL = await response.ref.getDownloadURL();
+    }
+    const newTweet = {
+      createdAt : Date.now(),
+      createrID : userData.uid,
+      text : ttweet,
+      imageURL,
+    };
     // tweet 업로드
-    // await dbService.collection('ttweet').add({
-    //   createdAt : Date.now(),
-    //   createrID : userObj.uid,
-    //   text : ttweet,
-    // });
-    // setTtweet('');
-
-    // image업로드
-    const fileRef = storageService.ref().child(`${userData.uid}/${uuidv4()}`);
+    await dbService.collection('ttweet').add(newTweet);
+    setTtweet('');
+    setImageUrl('');
   };
-  
+
   const onChange = (e) => {
-    const { 
-      target : { value } 
-    } = e;
+    const { target : { value } } = e;
     setTtweet(value);
   };
 
-  // image upload
+  // image -> string (base64)
   const onFileChange = (e) => {
-    const { 
-      target : { files }
-    } = e;
+    const { target : { files } } = e;
     const imageFile = files[0];
     const reader = new FileReader();
     reader.onload = (evt) => {
-      const {
-        target : {result}
-      } = evt;
-      setAttachment(result); // img url 전달
+      const { target : {result} } = evt;
+      setImageUrl(result); 
     };
     reader.readAsDataURL(imageFile);
   };
 
-  const onClearAttachment = () => setAttachment(null);
+  const onClearImageUrl = () => setImageUrl(null);
 
-  return { ttweet, ttweets, attachment, onSubmit, onChange, onFileChange, onClearAttachment };
+  return { ttweet, ttweets, imageUrl, onSubmit, onChange, onFileChange, onClearImageUrl };
 };

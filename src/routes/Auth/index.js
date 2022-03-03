@@ -1,10 +1,11 @@
 import { Button } from 'components';
 import React from 'react';
-import { useAuthentication } from './hooks';
+import { useAuthentication, useSocialLogin } from './hooks';
 
 const Auth = () => {
 
-  const { email, password, error, newAccount, onToggleAccount, onSubmit, onChange, onSocialLogin } = useAuthentication();
+  const { email, password, error, newAccount, onToggleAccount, onSubmit, onChange } = useAuthentication();
+  const { onSocialLogin } = useSocialLogin();
 
   return (
     <>

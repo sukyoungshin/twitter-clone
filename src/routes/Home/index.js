@@ -1,14 +1,14 @@
 import React from 'react';
-import { Ttweet } from 'components';
+import { Button, Ttweet } from 'components';
 import { useTtweetAndImagePost } from './hooks';
 
 const Home = ({ userData }) => {
 
-  const { ttweet, ttweets, attachment, onSubmit, onChange, onFileChange, onClearAttachment } = useTtweetAndImagePost({userData});
+  const { ttweet, ttweets, imageUrl, onSubmit, onChange, onFileChange, onClearImageUrl } = useTtweetAndImagePost({userData});
 
   return(
     <div>
-      <form onSubmit={onSubmit}>
+      <form id="tweet-form" onSubmit={onSubmit}>
         <input 
           value={ttweet} 
           onChange={onChange}
@@ -21,27 +21,28 @@ const Home = ({ userData }) => {
           accept="image/*" 
           onChange={onFileChange} 
         />
-        <input 
-          type="submit" 
-          value="ttweet" 
-        />
+        <Button type="submit" form="tweet-form">
+          POST
+        </Button>
         {
-          attachment && (
+          imageUrl && (
             <div>
-              <img src={attachment} width="50px" height="50px" alt="" />
-              <button onClick={onClearAttachment}>Clear</button>
+              <img src={imageUrl} width="50px" height="50px" alt="" />
+              <Button onClick={onClearImageUrl}>
+                CLEAR
+              </Button>
             </div>
           )
         }
       </form>
       <div>
         {
-          ttweets.map((twt) => (
-          <Ttweet 
-            key={twt.id} 
-            ttweetObj={twt}
-            isOwner={twt.createrID === userData.uid}
-          />
+          ttweets.map((tweet) => (
+            <Ttweet 
+              key={tweet.id} 
+              ttweetObj={tweet}
+              isOwner={tweet.createrID === userData.uid}
+            />
           ))
         }
       </div>
