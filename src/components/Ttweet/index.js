@@ -5,7 +5,7 @@ import { usePostCRUD } from './hooks';
 const Ttweet = ({ ttweetObj, isOwner }) => {
 
   const { isEnableEdit, newTtweet, onSubmit, onChange, onDeleteClick, toggleEditting } = usePostCRUD({ ttweetObj });
-  
+
   return (
     <div>
       {

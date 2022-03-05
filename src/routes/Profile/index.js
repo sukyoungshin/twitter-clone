@@ -1,14 +1,23 @@
-import React from 'react';
-import { useHistory } from 'react-router';
-import { authService } from 'firebaseConfig';
-import { ROUTER } from 'constants/router';
+import { dbService } from 'firebaseConfig';
+import React, { useEffect } from 'react';
+import { useLogout } from './hooks';
 
-const Profile = () => {
-  const history = useHistory();
-  const onLogout = () => {
-    authService.signOut();
-    history.push(ROUTER.ROOT);
+const Profile = ({ userData }) => {
+
+  const { onLogout } = useLogout();
+
+  const getMyTtweets = async() => {
+    const posts = await dbService
+    .collection("ttweet")
+    .where("createrID", "==", userData.uid)
+    .orderBy("createdAt")
+    .get();
+    console.log(posts.docs.map((doc) => doc.data()));
   };
+  useEffect(() => {
+    getMyTtweets();
+  }, []);
+
 
   return (
     <>

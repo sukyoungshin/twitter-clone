@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { dbService } from 'firebaseConfig';
+import { dbService, storageService } from 'firebaseConfig';
 
 export const usePostCRUD = ({ ttweetObj }) => {
 
@@ -11,6 +11,7 @@ export const usePostCRUD = ({ ttweetObj }) => {
     const deleteConfirm = window.confirm('Are you sure you want to delete this tweet?');
     if (deleteConfirm) {
       await dbService.doc(`ttweet/${ttweetObj.id}`).delete();
+      await storageService.refFromURL(ttweetObj.imageURL).delete();
     }
   };
 

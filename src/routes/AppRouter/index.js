@@ -36,7 +36,7 @@ const PostPage = ({ userData }) => {
       <Home userData={userData} />
     </Route>
     <Route exact path={ROUTER.PROFILE}>
-      <Profile />
+      <Profile userData={userData} />
     </Route>
     </>
   );
